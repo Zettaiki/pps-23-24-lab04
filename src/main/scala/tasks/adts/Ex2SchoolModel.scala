@@ -2,6 +2,7 @@ package tasks.adts
 import u03.Sequences.*
 import u03.Optionals.*
 import u02.AlgebraicDataTypes.Person
+import u03.extensionmethods.ExtensionMethods.seq
 
 /*  Exercise 2: 
  *  Implement the below trait, and write a meaningful test.
@@ -28,3 +29,23 @@ object SchoolModel:
       def nameOfCourse(teacher: Teacher): String
       def setTeacherToCourse(teacher: Teacher, course: Course): School
       def coursesOfATeacher(teacher: Teacher): Sequence[Course]
+
+  object BasicSchoolModel extends SchoolModule:
+    case class BasicCourse(name: String)
+    case class BasicTeacher(name: String, courses: Sequence[Course])
+    case class BasicSchool(courses: Sequence[Course], teachers: Sequence[Teacher])
+
+    type School = BasicSchool
+    type Teacher = BasicTeacher
+    type Course = BasicCourse
+
+    extension (school: School) 
+      def addTeacher(name: String): School = ???
+      def addCourse(name: String): School = ???
+      def teacherByName(name: String): Optional[Teacher] = ???
+      def courseByName(name: String): Optional[Course] = ???
+      def nameOfTeacher(teacher: Teacher): String = ???
+      def nameOfCourse(teacher: Teacher): String = ???
+      def setTeacherToCourse(teacher: Teacher, course: Course): School = ???
+      def coursesOfATeacher(teacher: Teacher): Sequence[Course] = ???
+
